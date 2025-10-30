@@ -1,29 +1,44 @@
 # Table of Contents
 
-## Introduction
+-
+	- [Introduction](introduction.md)
+	- [Requirements](requirements.md)
+	- [Changelog](changelog.md)
 
-- [Introduction](introduction.md)
 
-## Getting Started
+- Getting Started
+	- [Installation](getting-started/installation.md)
+	- [Quick Start](getting-started/quickstart.md)
+	- [Configuration](getting-started/configuration.md)
 
-- [Installation](getting-started/installation.md)
-- [Quick Start](getting-started/quickstart.md)
-- [Configuration](getting-started/configuration.md)
 
-## Usage
+- Sending Emails
+	- [Laravel](sending-emails/laravel.md)
+	- [Node.js](sending-emails/nodejs.md)
+	- [Python](sending-emails/python.md)
+	- [Ruby on Rails](sending-emails/rails.md)
+	- [PHP](sending-emails/php.md)
+	- [Go](sending-emails/go.md)
+	- [Java](sending-emails/java.md)
+	- [Docker](sending-emails/docker.md)
 
-- [Sending Emails](usage/sending-emails.md)
-- [Viewing Emails](usage/viewing-emails.md)
-- [Testing Workflows](usage/testing-workflows.md)
 
-## Advanced
+- Usage
+	- [Viewing Emails](usage/viewing-emails.md)
+	- [Testing Workflows](usage/testing-workflows.md)
 
-- [Settings](advanced/settings.md)
-- [Auto-Updates](advanced/auto-updates.md)
-- [Troubleshooting](advanced/troubleshooting.md)
 
-## Development
+- Advanced
+	- [Settings](advanced/settings.md)
+	- [Auto-Updates](advanced/auto-updates.md)
+	- [Troubleshooting](advanced/troubleshooting.md)
 
-- [Building from Source](development/building.md)
-- [Contributing](development/contributing.md)
-- [Release Process](development/releasing.md)
+
+- Development
+	- [Building from Source](development/building.md)
+	- [Contributing](development/contributing.md)
+	- [Release Process](development/releasing.md)
+
+
+- Support
+	- [Help](support/help.md)
