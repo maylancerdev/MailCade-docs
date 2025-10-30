@@ -2,28 +2,28 @@
 
 ## Introduction
 
-- [Introduction](introduction.md) - Welcome to MailCade
+- [Introduction](introduction.md)
 
 ## Getting Started
 
-- [Installation](getting-started/installation.md) - Install MailCade on your machine
-- [Quick Start](getting-started/quickstart.md) - Get up and running in 5 minutes
-- [Configuration](getting-started/configuration.md) - Configure SMTP and ports
+- [Installation](getting-started/installation.md)
+- [Quick Start](getting-started/quickstart.md)
+- [Configuration](getting-started/configuration.md)
 
 ## Usage
 
-- [Sending Emails](usage/sending-emails.md) - Connect your app to MailCade
-- [Viewing Emails](usage/viewing-emails.md) - Read and inspect emails
-- [Testing Workflows](usage/testing-workflows.md) - Test common email scenarios
+- [Sending Emails](usage/sending-emails.md)
+- [Viewing Emails](usage/viewing-emails.md)
+- [Testing Workflows](usage/testing-workflows.md)
 
 ## Advanced
 
-- [Settings](advanced/settings.md) - Customize MailCade behavior
-- [Auto-Updates](advanced/auto-updates.md) - Keep MailCade up to date
-- [Troubleshooting](advanced/troubleshooting.md) - Fix common issues
+- [Settings](advanced/settings.md)
+- [Auto-Updates](advanced/auto-updates.md)
+- [Troubleshooting](advanced/troubleshooting.md)
 
 ## Development
 
-- [Building from Source](development/building.md) - Why we don't offer source builds
-- [Contributing](development/contributing.md) - How you can help
-- [Release Process](development/releasing.md) - How releases are created
+- [Building from Source](development/building.md)
+- [Contributing](development/contributing.md)
+- [Release Process](development/releasing.md)
