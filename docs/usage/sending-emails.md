@@ -1,94 +1,78 @@
 # Sending Emails
 
-Connect your applications to MailCade.
+Here's how to connect different frameworks and languages to MailCade.
 
-## Basic Configuration
+The key thing: point your app to `localhost:1025`. No authentication, no encryption.
 
-Point your app to send emails to:
+## Laravel
 
-```
-Host: localhost
-Port: 1025
-Authentication: None
-Encryption: None
-```
+Add this to your `.env` file:
 
-## Framework Examples
-
-### Laravel
-
-**config/mail.php** or **.env**:
 ```env
-MAIL_MAILER=smtp
 MAIL_HOST=localhost
 MAIL_PORT=1025
 MAIL_USERNAME=null
 MAIL_PASSWORD=null
 MAIL_ENCRYPTION=null
-MAIL_FROM_ADDRESS="noreply@example.com"
-MAIL_FROM_NAME="${APP_NAME}"
 ```
 
-Send a test:
+Now send an email like normal:
+
 ```php
 Mail::to('user@example.com')->send(new WelcomeEmail());
 ```
 
-### Node.js
+It'll show up in MailCade instead of actually sending.
 
-**Nodemailer:**
+## Node.js
+
+With Nodemailer:
+
 ```javascript
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
   host: 'localhost',
-  port: 1025,
-  secure: false,
-  auth: false
+  port: 1025
 });
 
 transporter.sendMail({
   from: 'sender@example.com',
   to: 'recipient@example.com',
   subject: 'Test Email',
-  text: 'Hello from Node.js!',
-  html: '<p>Hello from Node.js!</p>'
+  html: '<p>Hello from Node!</p>'
 });
 ```
 
-### Python
+## Python
 
-**smtplib:**
+Using smtplib:
+
 ```python
 import smtplib
 from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 
-msg = MIMEMultipart('alternative')
+msg = MIMEText('<p>Hello from Python!</p>', 'html')
 msg['Subject'] = 'Test Email'
 msg['From'] = 'sender@example.com'
 msg['To'] = 'recipient@example.com'
 
-text = "Hello from Python!"
-html = "<p>Hello from Python!</p>"
-
-msg.attach(MIMEText(text, 'plain'))
-msg.attach(MIMEText(html, 'html'))
-
 server = smtplib.SMTP('localhost', 1025)
-server.sendmail('sender@example.com', 'recipient@example.com', msg.as_string())
+server.send_message(msg)
 server.quit()
 ```
 
-**Django:**
+In Django, update your `settings.py`:
+
 ```python
-# settings.py
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 EMAIL_USE_TLS = False
+```
 
-# Send email
+Then send emails normally:
+
+```python
 from django.core.mail import send_mail
 
 send_mail(
@@ -96,122 +80,95 @@ send_mail(
     'Test message.',
     'from@example.com',
     ['to@example.com'],
-    fail_silently=False,
 )
 ```
 
-### Ruby on Rails
+## Ruby on Rails
 
-**config/environments/development.rb:**
+In `config/environments/development.rb`:
+
 ```ruby
-config.action_mailer.delivery_method = :smtp
 config.action_mailer.smtp_settings = {
   address: 'localhost',
-  port: 1025,
-  enable_starttls_auto: false
-}
-
-config.action_mailer.default_url_options = {
-  host: 'localhost',
-  port: 3000
+  port: 1025
 }
 ```
 
-Send a test:
+Then send emails as usual:
+
 ```ruby
 UserMailer.welcome_email(@user).deliver_now
 ```
 
-### PHP
+## PHP
 
-**Native PHP:**
 ```php
-<?php
 ini_set('SMTP', 'localhost');
 ini_set('smtp_port', 1025);
 
-$to = 'recipient@example.com';
-$subject = 'Test Email';
-$message = 'Hello from PHP!';
-$headers = 'From: sender@example.com';
-
-mail($to, $subject, $message, $headers);
-?>
+mail(
+    'recipient@example.com',
+    'Test Email',
+    'Hello from PHP!',
+    'From: sender@example.com'
+);
 ```
 
-### Go
+## Go
 
-**Using net/smtp:**
 ```go
 package main
 
-import (
-    "fmt"
-    "net/smtp"
-)
+import "net/smtp"
 
 func main() {
     from := "sender@example.com"
     to := []string{"recipient@example.com"}
+    msg := []byte("Subject: Test\r\n\r\nHello from Go!")
     
-    msg := []byte("To: recipient@example.com\r\n" +
-        "Subject: Test Email\r\n" +
-        "\r\n" +
-        "Hello from Go!\r\n")
-    
-    err := smtp.SendMail("localhost:1025", nil, from, to, msg)
-    if err != nil {
-        fmt.Println(err)
-    }
+    smtp.SendMail("localhost:1025", nil, from, to, msg)
 }
 ```
 
-### Java
+## Java
 
-**Using JavaMail:**
+With JavaMail:
+
 ```java
 Properties props = new Properties();
 props.put("mail.smtp.host", "localhost");
 props.put("mail.smtp.port", "1025");
 
 Session session = Session.getInstance(props);
+Message message = new MimeMessage(session);
+message.setFrom(new InternetAddress("sender@example.com"));
+message.setRecipients(Message.RecipientType.TO,
+    InternetAddress.parse("recipient@example.com"));
+message.setSubject("Test Email");
+message.setText("Hello from Java!");
 
-try {
-    Message message = new MimeMessage(session);
-    message.setFrom(new InternetAddress("sender@example.com"));
-    message.setRecipients(Message.RecipientType.TO,
-        InternetAddress.parse("recipient@example.com"));
-    message.setSubject("Test Email");
-    message.setText("Hello from Java!");
-
-    Transport.send(message);
-} catch (MessagingException e) {
-    e.printStackTrace();
-}
+Transport.send(message);
 ```
 
-## Testing with cURL
+## Quick test with cURL
 
-Quick command-line test:
+Want to test without writing code? Use curl:
 
 ```bash
 curl smtp://localhost:1025 \
   --mail-from test@example.com \
-  --mail-rcpt recipient@example.com \
+  --mail-rcpt you@example.com \
   --upload-file - <<EOF
-From: test@example.com
-To: recipient@example.com
 Subject: Test from cURL
 
-This is a test email!
+If you see this, it works!
 EOF
 ```
 
-## Docker Containers
+## From Docker containers
 
-If your app runs in Docker, use your host machine's IP instead of `localhost`:
+If your app runs in Docker, `localhost` won't work. Use `host.docker.internal` instead:
 
-**macOS/Windows:**
 ```yaml
 # docker-compose.yml
 environment:
@@ -219,33 +176,25 @@ environment:
   MAIL_PORT: 1025
 ```
 
-**Linux:**
+On Linux, add this too:
+
 ```yaml
-# docker-compose.yml
 extra_hosts:
   - "host.docker.internal:host-gateway"
-environment:
-  MAIL_HOST: host.docker.internal
-  MAIL_PORT: 1025
 ```
 
 ## Troubleshooting
 
-**Emails not appearing?**
+Emails not showing up? Check these:
 
-1. Check server is running (sidebar shows "● Running")
-2. Verify correct host (`localhost`) and port (`1025`)
-3. Disable TLS/SSL in your app
-4. Disable authentication in your app
-5. Test with curl to isolate the issue
+- Make sure MailCade is running (sidebar shows "● Running")
+- Double-check you're using `localhost:1025`
+- Turn off TLS/SSL in your app config
+- Turn off SMTP authentication
+- Try the curl command above to isolate the issue
 
-**Connection refused?**
+Still stuck? The [troubleshooting guide](../advanced/troubleshooting.md) has more solutions.
 
-- Check firewall settings
-- Try `127.0.0.1` instead of `localhost`
-- Verify port isn't already in use
+## What's next
 
-## What's Next?
-
-- [Viewing Emails](viewing-emails.md) - Read and inspect emails
-- [Testing Workflows](testing-workflows.md) - Test real scenarios
+Now that emails are flowing in, learn how to [inspect them](viewing-emails.md) or check out [testing workflows](testing-workflows.md) for specific scenarios like password resets.

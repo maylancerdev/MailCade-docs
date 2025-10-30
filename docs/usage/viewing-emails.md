@@ -1,147 +1,53 @@
 # Viewing Emails
 
-Read and inspect emails in MailCade.
+All emails your app tries to send show up in MailCade's inbox. Click any email to see the full content.
 
-## Email Inbox
+## The inbox
 
-The inbox shows all captured emails with:
+You'll see:
 
-- **Sender** address
-- **Subject** line
-- **Recipients** (To, CC, BCC)
-- **Timestamp** when received
-- **Preview** of email content
+- Who it's from
+- The subject line
+- Who it's going to (To, CC, BCC)
+- When it arrived
+- A preview of the content
 
-Click any email to view full details.
+Click an email to open it.
 
-## Email Detail View
+## Reading emails
 
-### Content Tab
+When you open an email, you get three tabs:
 
-View the email body:
+**Content:** The actual email body. If the email has both HTML and plain text versions, you can switch between them. Images and styling show up just like they would in a real email client.
 
-- **HTML version** (if available)
-- **Plain text version**
-- Images and styling (rendered)
+**Headers:** All the technical stuff - sender, recipients, message IDs, content types, custom headers. Handy when you're debugging or need to verify specific metadata.
 
-Switch between HTML and text using the tabs.
+**Raw:** The complete email source with all MIME parts, encoding, everything. For when you really need to dig deep.
 
-### Headers Tab
+## What you can do
 
-View technical email headers:
+**Delete emails:** Click the delete button. Gone.
 
-- **From/To/CC/BCC** - All recipients
-- **Message-ID** - Unique identifier
-- **Date** - Send timestamp
-- **Content-Type** - MIME type
-- **Custom headers** - X-headers, tracking, etc.
+**Forward to yourself:** Click forward and your email client opens. Useful when you want to test how the email looks on your phone or in Gmail.
 
-Useful for debugging delivery issues or testing email metadata.
+## Cleaning up
 
-### Raw Tab
+Want to delete everything? Go to Settings → Server Configuration and temporarily set Email Retention to 10. Wait a few seconds and old emails disappear. Then set it back.
 
-See the complete raw email source including:
+Or just restart the server.
 
-- All MIME parts
-- Encoded content
-- Full headers
-- Boundaries
+## Testing tips
 
-Perfect for debugging complex email formats.
+**Check responsive design:** Resize the MailCade window to see how emails look at different widths.
 
-## Email Actions
+**Test links:** All links are clickable. Click through password resets, verification links, whatever you're testing.
 
-### Delete
+**Verify personalization:** Make sure user names, order numbers, and other dynamic content look right. Use realistic test data to catch formatting issues.
 
-Remove a single email:
-1. Click the email
-2. Click **Delete** button
-3. Confirm deletion
+**Check attachments:** You'll see file names and sizes. Make sure everything looks correct.
 
-### Forward
+## What's next
 
-Send to your real inbox for testing:
-1. Click the email
-2. Click **Forward**
-3. Your email client opens
-4. Send to yourself
+Ready to test specific workflows like password resets? Check out [testing workflows](testing-workflows.md).
 
-Great for testing on actual devices or email clients.
-
-## Managing Emails
-
-### Search
-
-Coming soon! For now:
-- Use descriptive subjects during testing
-- Delete old emails regularly
-- Keep inbox manageable
-
-### Bulk Delete
-
-Delete all emails:
-1. **Settings → Server Configuration**
-2. Set **Email Retention** to `10`
-3. Wait a few seconds
-4. Old emails auto-delete
-5. Set retention back to preferred limit
-
-Or restart the server to clear all emails.
-
-### Filter by Sender/Recipient
-
-Click email addresses in the inbox to filter (coming soon).
-
-## Reading Tips
-
-### Test Email Rendering
-
-Resize the MailCade window to preview responsive email designs at different widths.
-
-### Check Links
-
-Links in emails are clickable. Test:
-- Password reset links
-- Verification links
-- Unsubscribe links
-- Call-to-action buttons
-
-### Verify Attachments
-
-Attachments are displayed. Check:
-- File names appear correctly
-- File sizes are reasonable
-- Download links work
-
-### Test Dynamic Content
-
-Verify personalization:
-- User names
-- Order numbers
-- Timestamps
-- Custom data
-
-Use real-looking test data to catch formatting issues.
-
-## Email Metadata
-
-Each email shows:
-
-- **Size** - Total email size in bytes
-- **Parts** - Number of MIME parts
-- **Recipients** - All To/CC/BCC addresses
-- **Thread** - Related emails (if applicable)
-
-## Accessibility
-
-MailCade supports:
-
-- Keyboard navigation
-- Screen reader compatibility
-- High contrast mode
-- Zoom support
-
-## What's Next?
-
-- [Testing Workflows](testing-workflows.md) - Test real email scenarios
-- [Troubleshooting](../advanced/troubleshooting.md) - Fix common issues
+Having issues? The [troubleshooting guide](../advanced/troubleshooting.md) can help.

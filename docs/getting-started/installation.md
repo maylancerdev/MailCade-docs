@@ -1,72 +1,58 @@
 # Installation
 
-Get MailCade installed on your machine in minutes.
-
-## System Requirements
-
-- **macOS**: 11 or later
-- **Windows**: 10 or later  
-- **Linux**: Ubuntu 20.04+, Fedora 35+, or similar
+Getting MailCade on your machine takes about two minutes.
 
 ## Download
 
-Download the latest version for your platform from the [GitHub releases page](https://github.com/olakunlevpn/MailCade/releases):
+Grab the latest version from the [releases page](https://github.com/olakunlevpn/MailCade/releases):
 
-- **macOS**: `MailCade-{version}-arm64.dmg`
-- **Windows**: `MailCade-Setup-{version}.exe`
-- **Linux**: `MailCade-{version}.AppImage`, `.deb`, or `.rpm`
+- **macOS**: Download the `.dmg` file
+- **Windows**: Download the `.exe` installer
+- **Linux**: Download `.AppImage`, `.deb`, or `.rpm`
 
-## Installation
+MailCade works on macOS 11+, Windows 10+, and most modern Linux distros.
 
-### macOS
+## Installing
 
-1. Download `MailCade-{version}-arm64.dmg`
-2. Open the DMG file
-3. Drag MailCade to Applications
-4. Launch from Applications folder
+### On macOS
 
-**Security Note**: If macOS blocks the app:
-- Go to **System Settings → Privacy & Security**
-- Click **"Open Anyway"** next to MailCade
+Open the `.dmg` file and drag MailCade to your Applications folder. That's it.
 
-### Windows
+If macOS complains about an unidentified developer, go to System Settings → Privacy & Security and click "Open Anyway".
 
-1. Download `MailCade-Setup-{version}.exe`
-2. Run the installer
-3. Follow setup wizard
-4. Launch from Start menu or desktop shortcut
+### On Windows
 
-### Linux
+Run the installer and follow the prompts. If Windows SmartScreen pops up, click "More info" then "Run anyway".
 
-**AppImage:**
+### On Linux
+
+For AppImage:
+
 ```bash
-chmod +x MailCade-{version}.AppImage
-./MailCade-{version}.AppImage
+chmod +x MailCade-*.AppImage
+./MailCade-*.AppImage
 ```
 
-**Debian/Ubuntu (.deb):**
+For Debian/Ubuntu:
+
 ```bash
-sudo dpkg -i MailCade-{version}.deb
-mailcade
+sudo dpkg -i MailCade-*.deb
 ```
 
-**Fedora/RHEL (.rpm):**
+For Fedora/RHEL:
+
 ```bash
-sudo rpm -i MailCade-{version}.x86_64.rpm
-mailcade
+sudo rpm -i MailCade-*.rpm
 ```
 
-## First Launch
+## First launch
 
-When you open MailCade for the first time:
+When you first open MailCade, the SMTP server starts automatically on port 1025. Your inbox will be empty (obviously), and you're ready to catch emails.
 
-1. The SMTP server starts automatically on **port 1025**
-2. The inbox is empty
-3. You're ready to catch emails
+No setup required. No config files to edit. Just launch and go.
 
-No configuration needed!
+## Next steps
 
-## What's Next?
+Head to the [quick start guide](quickstart.md) to send your first test email. Takes about 30 seconds.
 
-- [Quick Start Guide](quickstart.md) - Send your first test email
-- [Configuration](configuration.md) - Customize ports and settings
+If you need to change ports or tweak settings, check out the [configuration guide](configuration.md).

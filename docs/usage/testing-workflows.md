@@ -1,220 +1,104 @@
 # Testing Workflows
 
-Test common email scenarios with MailCade.
+Here's how to test common email scenarios.
 
-## User Registration
+## Registration emails
 
-**Test flow:**
-1. Fill out registration form in your app
-2. Submit the form
-3. Check MailCade inbox for welcome email
-4. Verify email content:
-   - Correct recipient
-   - Welcome message
-   - Verification link (if applicable)
-5. Click verification link
-6. Confirm it redirects correctly
+Register a new user in your app. The welcome email shows up in MailCade instantly.
 
-**What to check:**
-- Email arrives within seconds
-- Subject line is correct
-- User's name appears (if personalized)
-- Links work
-- Images load
-- Branding looks good
+Check that:
+- The right email address got it
+- The subject line looks good
+- Any personalization (like the user's name) works
+- Verification links actually work when clicked
+- Images and branding look right
 
-## Password Reset
+## Password resets
 
-**Test flow:**
-1. Request password reset
-2. Find reset email in MailCade
-3. Copy reset link
-4. Paste in browser
-5. Reset password
-6. Verify success
+Trigger a password reset and check the email in MailCade.
 
-**What to check:**
-- Reset link is unique
-- Link expires correctly (test after timeout)
-- Email warns about security
-- Sender address is correct
+Click the reset link - it should work. Try it again after it expires to make sure your timeout logic works.
 
-## Order Confirmations
+Make sure the email has appropriate security warnings and comes from the right address.
 
-**Test flow:**
-1. Complete a test order
-2. Check MailCade for confirmation
-3. Verify order details:
-   - Order number
-   - Items purchased
-   - Total price
-   - Shipping address
-4. Check formatting and layout
+## Order confirmations
 
-**What to check:**
-- Dynamic data is accurate
-- Prices format correctly
-- Tables display properly
-- Receipt looks professional
+Place a test order and check the confirmation email.
 
-## Email Templates
+Verify the order number, items, prices, and shipping address are all correct. Make sure tables and formatting look good. Nothing worse than a broken receipt.
 
-**Test flow:**
-1. Send email with your template
-2. View in MailCade
-3. Check HTML rendering
-4. Verify responsive design
-5. Test in different window sizes
+## Email templates
 
-**What to check:**
-- Colors match design
-- Fonts load correctly
-- Images appear
-- Buttons are clickable
-- Layout doesn't break
-- Mobile preview looks good
+Working on a new email template? Send one through and check it in MailCade.
 
-## Transactional Emails
+Resize the window to see how it looks on different screen sizes. Make sure colors match your design, fonts load, images appear, and buttons are clickable.
 
-Common emails to test:
+## Other emails to test
 
-### Account Notifications
-- Email address changed
-- Password changed
-- Two-factor authentication codes
-- Login from new device
+Don't forget about:
 
-### Billing
-- Payment received
-- Payment failed
-- Subscription renewal
-- Refund processed
+**Account stuff:** Email/password changes, 2FA codes, login alerts
 
-### Activity
-- New follower
-- New comment
-- Message received
-- Reminder notifications
+**Billing:** Payment receipts, failed payments, renewals, refunds
 
-## Multi-Recipient Emails
+**Activity:** New followers, comments, messages, reminders
 
-**Test with:**
-- Multiple To addresses
-- CC recipients
-- BCC recipients (won't show in headers)
+## Multiple recipients
 
-Verify:
-- All recipients receive email
-- BCC addresses stay hidden
-- Reply-to works correctly
+Testing emails with multiple recipients? Just add them. MailCade catches them all.
 
-## Automated Testing
+BCC addresses won't show in the headers (as expected). Check that reply-to addresses work correctly.
 
-### API Testing
+## Automated testing
 
-Access MailCade's API on `http://localhost:8025`:
+MailCade has an API at `http://localhost:8025/api/v1/messages`. Use it in your automated tests:
 
-```bash
-# Get all messages
-curl http://localhost:8025/api/v1/messages
-
-# Get specific message
-curl http://localhost:8025/api/v1/message/{id}
-
-# Delete all messages
-curl -X DELETE http://localhost:8025/api/v1/messages
-```
-
-### E2E Testing
-
-**Playwright example:**
 ```javascript
 test('user receives welcome email', async ({ page }) => {
-  // Register user
+  // Trigger registration
   await page.goto('http://localhost:3000/register');
   await page.fill('[name="email"]', 'test@example.com');
   await page.click('button[type="submit"]');
   
-  // Check MailCade API
+  // Check email arrived
   const response = await fetch('http://localhost:8025/api/v1/messages');
-  const data = await response.json();
+  const { messages } = await response.json();
   
-  const email = data.messages.find(
-    m => m.To[0].Address === 'test@example.com'
-  );
+  const email = messages.find(m => m.To[0].Address === 'test@example.com');
   
-  expect(email).toBeDefined();
   expect(email.Subject).toContain('Welcome');
 });
 ```
 
-## Testing Best Practices
-
-### Use Realistic Data
-
-```
-✅ john.smith@example.com
-❌ test@test.com
-
-✅ "Welcome to MailCade, John!"
-❌ "Welcome to [APP], [USER]!"
-```
-
-### Test Edge Cases
-
-- Very long subject lines
-- Special characters in names
-- International email addresses
-- Multiple attachments
-- Large email sizes
-
-### Test Timing
-
-- Immediate emails (welcome, confirmation)
-- Delayed emails (reminder, follow-up)
-- Scheduled emails (newsletter, digest)
-
-### Test Failure Scenarios
-
-- Invalid recipient
-- Missing required fields
-- Template render errors
-- Link generation failures
-
-## Regression Testing
-
-Create a test checklist:
-
-- [ ] User registration email
-- [ ] Password reset email
-- [ ] Order confirmation
-- [ ] Shipping notification
-- [ ] Newsletter signup
-- [ ] Account deletion confirmation
-
-Run through the checklist before each release.
-
-## Performance Testing
-
-Test with high volume:
+You can also delete all emails between tests:
 
 ```bash
-# Send 1000 test emails
-for i in {1..1000}; do
-  curl smtp://localhost:1025 \
-    --mail-from test@example.com \
-    --mail-rcpt user$i@example.com \
-    --upload-file email.txt
-done
+curl -X DELETE http://localhost:8025/api/v1/messages
 ```
 
-Check:
-- MailCade remains responsive
-- All emails appear
-- Search/filter still works
-- Memory usage is reasonable
+## Quick tips
 
-## What's Next?
+**Use realistic data:** Test with `john@example.com`, not `test@test.com`. Use actual names for personalization.
 
-- [Settings](../advanced/settings.md) - Customize MailCade
-- [Troubleshooting](../advanced/troubleshooting.md) - Fix issues
+**Test edge cases:** Long subject lines, special characters, international addresses, attachments.
+
+**Test timing:** Make sure immediate emails send instantly. Check that delayed/scheduled emails work.
+
+**Test failures:** What happens with invalid data? Missing fields? Make sure error handling works.
+
+## Before each release
+
+Create a simple checklist:
+
+- Registration emails work
+- Password resets work
+- Order confirmations look right
+- All your critical email flows are tested
+
+Takes 5 minutes and catches silly mistakes.
+
+## What's next
+
+Want to tweak MailCade's settings? Check the [settings guide](../advanced/settings.md).
+
+Running into problems? See [troubleshooting](../advanced/troubleshooting.md).

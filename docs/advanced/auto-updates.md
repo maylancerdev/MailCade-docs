@@ -1,211 +1,51 @@
 # Auto-Updates
 
-Keep MailCade up to date with automatic updates.
+MailCade updates itself automatically. No manual downloads needed.
 
-## How It Works
+## How it works
 
-MailCade checks for updates automatically:
+The app checks for updates when it launches and once a day after that. When there's a new version:
 
-1. **On startup** - Checks 5 seconds after launch
-2. **Periodically** - Checks every 24 hours (if enabled)
-3. **Manually** - Via Settings → Updates
+- You get a notification
+- It downloads in the background
+- You decide when to install
 
-When an update is available:
-- Notification appears in Settings
-- Download happens in background
-- You choose when to install
+Your settings and emails are preserved.
 
-## Checking for Updates
+## Checking for updates
 
-### Automatic Check
+By default, auto-update is on (Settings → General → Auto-update). MailCade checks for new versions automatically.
 
-**Settings → General → Auto-update**
+Want to check right now? Go to Settings → Updates → Check for Updates. You'll see your current version, the latest version, and release notes.
 
-**Default**: Enabled
+## Installing updates
 
-Automatically checks for updates and notifies you.
+When an update is ready, you'll see a notification. Click "Install Update" and MailCade restarts with the new version.
 
-### Manual Check
+If you're in the middle of something, just ignore it. The update waits for you - install it whenever you're ready.
 
-**Settings → Updates → Check for Updates**
+All your settings and current emails stick around. Nothing gets lost.
 
-Click to check immediately. Shows:
-- Current version
-- Latest version
-- Release notes
-- Download button
+## Skipping updates
 
-## Installing Updates
+Not ready for an update? Click "Skip This Version" and you won't be bothered about it again. You'll still get notified about future versions.
 
-### Automatic Download
+## Manual updates
 
-When update is found:
-1. Download starts automatically
-2. Progress shown in Settings
-3. Notification when ready
-4. Click "Install Update" to apply
+If auto-update is off or something goes wrong, you can always download the latest version from [GitHub releases](https://github.com/olakunlevpn/MailCade/releases) and install it manually.
 
-### Manual Installation
+## Troubleshooting
 
-1. Go to Settings → Updates
-2. Click "Download Update"
-3. Wait for download
-4. Click "Install and Restart"
-5. MailCade restarts with new version
+**Update check fails?** Check your internet connection and try again in a few minutes.
 
-## Update Process
+**Download fails?** Make sure you have enough disk space. Try again or download manually.
 
-### What Happens
+**Install fails?** Quit MailCade completely, download the new version manually, and install it over the old one.
 
-1. **Download** - New version downloads in background
-2. **Verify** - Checksum verification ensures integrity
-3. **Install** - Replaces old version on restart
-4. **Migrate** - Settings carry over automatically
+## Turning it off
 
-### Your Data
+You can turn off auto-update in Settings → General → Auto-update, but we don't recommend it. You'll miss out on fixes and new features.
 
-- ✅ **Settings preserved** - All configuration kept
-- ✅ **Emails preserved** - Current emails remain
-- ✅ **No data loss** - Safe to update anytime
+## What's next
 
-### Timing
-
-**Update anytime**. There's no "bad time" to update.
-
-However, if you're in the middle of important testing:
-- Complete your test
-- Then install update
-- Or install later (update waits for you)
-
-## Update Channels
-
-### Stable (Default)
-
-Production releases only. Tested and stable.
-
-**Recommended for**: Everyone
-
-**Update frequency**: Every few weeks/months
-
-### Beta (Coming Soon)
-
-Early access to new features. May have bugs.
-
-**Recommended for**: Developers, contributors, testers
-
-**Update frequency**: Weekly or more
-
-## Skipping Updates
-
-You can skip an update:
-
-1. Check for updates
-2. See update notification
-3. Click "Skip This Version"
-4. Won't notify about that version again
-
-Next version will still notify normally.
-
-## Offline Updates
-
-If you're offline when update is available:
-
-1. Download later when online
-2. Or manually download from GitHub
-3. Install `.dmg` / `.exe` / `.AppImage` manually
-
-## Troubleshooting Updates
-
-### Update Check Fails
-
-**Causes**:
-- No internet connection
-- GitHub API rate limit
-- Firewall blocking requests
-
-**Solution**:
-- Check internet connection
-- Try again in a few minutes
-- Manually download from releases page
-
-### Download Fails
-
-**Causes**:
-- Connection interrupted
-- Insufficient disk space
-- Firewall blocking download
-
-**Solution**:
-- Retry download
-- Free up disk space
-- Check firewall settings
-- Manual download as fallback
-
-### Install Fails
-
-**Rare, but possible**:
-
-**macOS**: Remove old app, install new one manually  
-**Windows**: Run installer as administrator  
-**Linux**: Check file permissions
-
-### Update Won't Install
-
-1. Quit MailCade completely
-2. Manually download new version
-3. Install over old version
-4. Launch new version
-
-## Version History
-
-Check what's new:
-
-**Settings → About → Version**
-
-Shows:
-- Current version
-- Last update date
-- Change log link
-
-Or visit: https://github.com/olakunlevpn/MailCade/releases
-
-## Delta Updates
-
-MailCade uses **delta updates** when possible:
-
-- Downloads only changed files
-- Faster updates
-- Less bandwidth
-- Uses `.blockmap` files
-
-First install requires full download.
-
-## Disabling Auto-Update
-
-Not recommended, but possible:
-
-**Settings → General → Auto-update** → Toggle OFF
-
-You'll need to manually check for updates.
-
-## Release Notifications
-
-Get notified about new releases:
-
-1. Watch the repository on GitHub
-2. Star the repo for updates
-3. Follow release notes
-
-## Security
-
-Updates are secure:
-
-- ✅ **HTTPS downloads** - Encrypted transfer
-- ✅ **Checksum verification** - File integrity checked
-- ✅ **GitHub releases** - Official source
-- ✅ **Code signed** - Verified publisher (macOS)
-
-## What's Next?
-
-- [Troubleshooting](troubleshooting.md) - Fix common issues
-- [Contributing](../development/contributing.md) - Help improve MailCade
+Need help with something? Check [troubleshooting](troubleshooting.md).

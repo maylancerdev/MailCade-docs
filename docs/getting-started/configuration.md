@@ -1,121 +1,55 @@
 # Configuration
 
-Customize MailCade to fit your workflow.
+MailCade works fine with the defaults, but here's how to tweak things if you need to.
 
-## Default Configuration
+## Changing ports
 
-Out of the box, MailCade uses:
+By default, MailCade listens on port 1025. If something else is using that port, you can change it.
 
-- **SMTP Port**: 1025
-- **API Port**: 8025 (internal)
-- **Email Retention**: 500 emails
-- **Auto-start**: Enabled
+Go to Settings → Server Configuration → SMTP Port. Pick any port between 1 and 65535. Click Restart Server.
 
-## Changing Ports
+Your app will need to send to the new port too:
 
-**Settings → Server Configuration**
+```env
+MAIL_PORT=1026  # or whatever you chose
+```
 
-### SMTP Port
+There's also an API port (default 8025) but you probably won't need to touch it.
 
-The port where your app sends emails.
+## Email retention
 
-**Default**: 1025  
-**Range**: 1-65535
+MailCade keeps up to 500 emails by default. When you hit the limit, older emails get deleted automatically.
 
-After changing, click **Restart Server**.
+You can change this in Settings → Server Configuration → Email Retention. Set it anywhere from 10 to 10,000 emails.
 
-### API Port
+## Other settings
 
-Internal communication port for the web UI.
+### Auto-start
 
-**Default**: 8025  
-**Range**: 1-65535
+By default, the email server starts when you launch MailCade. You probably want to keep this on so you don't forget.
 
-Most users don't need to change this.
+Find it in Settings → General → Auto-start Server.
 
-## Email Retention
+### Notifications
 
-**Settings → Server Configuration → Email Retention**
+MailCade can notify you when emails arrive. Handy if you're testing something in the background.
 
-Maximum emails to keep before auto-deletion.
-
-**Default**: 500  
-**Range**: 10 - 10,000
-
-Older emails are automatically removed when the limit is reached.
-
-## App Settings
-
-### Auto-start Server
-
-**Settings → General → Auto-start Server**
-
-Start the email server when MailCade launches.
-
-**Default**: Enabled  
-**Recommendation**: Keep it ON
-
-### Desktop Notifications
-
-**Settings → General → Desktop Notifications**
-
-Get notified when new emails arrive.
-
-**Default**: Enabled
+Toggle it in Settings → General → Desktop Notifications.
 
 ### Theme
 
-**Settings → General → Theme**
+Pick Light, Dark, or System (follows your OS). Settings → General → Theme.
 
-Choose your theme:
-- **Light**
-- **Dark**
-- **System** (follows OS settings)
+## Testing multiple projects
 
-## Server Controls
+If you're working on several apps at once, you have two options:
 
-Quick access to server controls:
+**Use different ports:** Run Project A on 1025, Project B on 1026, etc. Just change the SMTP port in MailCade when switching between projects.
 
-1. Look at sidebar → **Email Server** section
-2. Click the **gear icon** ⚙️
-3. Access Start/Stop/Restart buttons
+**Use the same port:** Point all projects to 1025. All emails show up in one inbox. Works fine if you can tell them apart by subject or sender.
 
-## Multiple Projects
+## What's next
 
-Running multiple apps? Two options:
+Need examples for more frameworks? Check out [sending emails](../usage/sending-emails.md).
 
-**Option 1: Different ports per project**
-```
-Project A → localhost:1025
-Project B → localhost:1026
-Project C → localhost:1027
-```
-
-Change the SMTP port in MailCade for each testing session.
-
-**Option 2: Same port for all**
-
-All projects send to `localhost:1025`. All emails appear in one inbox.
-
-## Advanced: Environment Variables
-
-If building from source, customize branding with a `.env` file:
-
-```env
-VITE_APP_NAME=MailCade
-VITE_AUTHOR_NAME=Your Name
-VITE_AUTHOR_LINK=https://yoursite.com
-VITE_WEBSITE_LINK=https://yoursite.com/mailcade
-VITE_DOCS_LINK=https://yoursite.com/docs
-VITE_GITHUB_REPO=https://github.com/you/mailcade
-```
-
-Then rebuild:
-```bash
-npm run electron:build
-```
-
-## What's Next?
-
-- [Sending Emails](../usage/sending-emails.md) - Connect your applications
-- [Settings](../advanced/settings.md) - Deep dive into all settings
+Want to dive deep into every setting? See the [complete settings guide](../advanced/settings.md).

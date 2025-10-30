@@ -1,33 +1,18 @@
 # Quick Start
 
-Get started with MailCade in 5 minutes.
+Let's catch your first email with MailCade.
 
-## Step 1: Launch MailCade
+## Point your app to MailCade
 
-Open MailCade. The SMTP server starts automatically on **port 1025**.
+Tell your app to send emails to `localhost:1025`. No authentication needed.
 
-Check the sidebar to confirm:
-```
-Email Server ● Running
-Port: 1025
-```
+Here's how to do it in a few frameworks:
 
-## Step 2: Configure Your App
+### Laravel
 
-Point your application to send emails to MailCade:
+In your `.env` file:
 
-```
-Host: localhost
-Port: 1025
-```
-
-**No authentication required.**
-
-### Quick Examples
-
-**Laravel (.env):**
 ```env
-MAIL_MAILER=smtp
 MAIL_HOST=localhost
 MAIL_PORT=1025
 MAIL_USERNAME=null
@@ -35,16 +20,19 @@ MAIL_PASSWORD=null
 MAIL_ENCRYPTION=null
 ```
 
-**Node.js (Nodemailer):**
+### Node.js
+
+With Nodemailer:
+
 ```javascript
 const transporter = nodemailer.createTransport({
   host: 'localhost',
-  port: 1025,
-  secure: false
+  port: 1025
 });
 ```
 
-**Python:**
+### Python
+
 ```python
 import smtplib
 
@@ -53,43 +41,42 @@ server.sendmail('from@example.com', 'to@example.com', 'Hello!')
 server.quit()
 ```
 
-**Rails:**
+### Rails
+
 ```ruby
-config.action_mailer.delivery_method = :smtp
 config.action_mailer.smtp_settings = {
   address: 'localhost',
   port: 1025
 }
 ```
 
-## Step 3: Send a Test Email
+## Send a test email
 
-Send an email from your app or test with curl:
+Now trigger an email from your app. Could be a registration email, password reset, whatever.
+
+Or if you just want to see it work, use curl:
 
 ```bash
 curl smtp://localhost:1025 \
   --mail-from test@example.com \
-  --mail-rcpt recipient@example.com \
+  --mail-rcpt you@example.com \
   --upload-file - <<EOF
-Subject: My First Test
+Subject: Testing MailCade
 
-Hello from MailCade!
+If you see this, it works!
 EOF
 ```
 
-## Step 4: View Your Email
+## Check MailCade
 
-The email appears instantly in MailCade's inbox. Click it to:
+The email shows up instantly in MailCade. Click it to view the full content, check headers, test links - whatever you need.
 
-- View HTML or plain text content
-- Inspect headers
-- Read metadata
-- Delete or forward
+That's it. You're all set.
 
-That's it! You're ready to test emails.
+## Dive deeper
 
-## What's Next?
+Want to customize ports or tweak settings? Check the [configuration guide](configuration.md).
 
-- [Configuration](configuration.md) - Customize settings
-- [Sending Emails](../usage/sending-emails.md) - More integration examples
-- [Testing Workflows](../usage/testing-workflows.md) - Test real scenarios
+Need examples for other frameworks? See [sending emails](../usage/sending-emails.md).
+
+Working on specific features like password resets? The [testing workflows guide](../usage/testing-workflows.md) has you covered.

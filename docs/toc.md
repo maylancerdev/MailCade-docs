@@ -2,8 +2,6 @@
 
 -
 	- [Introduction](introduction.md)
-	- [Requirements](requirements.md)
-	- [Changelog](changelog.md)
 
 
 - Getting Started
@@ -12,18 +10,8 @@
 	- [Configuration](getting-started/configuration.md)
 
 
-- Sending Emails
-	- [Laravel](sending-emails/laravel.md)
-	- [Node.js](sending-emails/nodejs.md)
-	- [Python](sending-emails/python.md)
-	- [Ruby on Rails](sending-emails/rails.md)
-	- [PHP](sending-emails/php.md)
-	- [Go](sending-emails/go.md)
-	- [Java](sending-emails/java.md)
-	- [Docker](sending-emails/docker.md)
-
-
 - Usage
+	- [Sending Emails](usage/sending-emails.md)
 	- [Viewing Emails](usage/viewing-emails.md)
 	- [Testing Workflows](usage/testing-workflows.md)
 
@@ -37,8 +25,4 @@
 - Development
 	- [Building from Source](development/building.md)
 	- [Contributing](development/contributing.md)
-	- [Release Process](development/releasing.md)
-
-
-- Support
-	- [Help](support/help.md)
+	- [Releases & Updates](development/releasing.md)

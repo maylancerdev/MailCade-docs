@@ -1,120 +1,61 @@
 # Introduction
 
-**MailCade** is a developer-friendly email testing sandbox for local development.
-
-It captures all outgoing emails from your applications, so you can test email functionality without spamming real inboxes or configuring external SMTP services.
-
+MailCade catches all emails your app tries to send. Think of it as a local email inbox for developers.
 
 ![MailCade Screenshot](/images/cover.png)
 
+Instead of emails actually being sent, they show up in MailCade. You can inspect them, click links, check how they look - all without spamming real inboxes or setting up external email services.
 
----
+## Quick look
 
-## What is MailCade?
+Here's what a typical workflow looks like:
 
-MailCade is a desktop application that runs a local SMTP server with a clean, modern UI for viewing captured emails. It's perfect for:
-
-- **Testing user registration emails** - Verify welcome emails and activation links
-- **Debugging email templates** - Check HTML rendering and responsive design
-- **Verifying transactional emails** - Test order confirmations, password resets, etc.
-- **Developing email features** - Build and test without sending real emails
-
----
-
-## Key Features
-
-### 📧 Local SMTP Server
-Runs on `localhost:1025` by default. No configuration needed.
-
-### 🎨 Modern UI
-Clean interface with dark mode support for viewing and inspecting emails.
-
-### 🚀 Zero Configuration
-Works out of the box. Just point your app to `localhost:1025` and start testing.
-
-### 🔒 Fully Local
-No cloud services, no external dependencies, complete privacy.
-
-### ⚡ Fast & Lightweight
-Minimal resource usage, instant email display.
-
-### 🌐 Cross-Platform
-Available for macOS, Windows, and Linux.
-
----
-
-## Quick Example
-
-**1. Launch MailCade**  
-The SMTP server starts automatically.
-
-**2. Configure your app**
 ```env
+# Point your app to MailCade
 MAIL_HOST=localhost
 MAIL_PORT=1025
 ```
 
-**3. Send a test email**
-```bash
-curl smtp://localhost:1025 \
-  --mail-from test@example.com \
-  --mail-rcpt user@example.com \
-  --upload-file email.txt
-```
+Send an email from your app, and boom - it appears in MailCade instantly.
 
-**4. View in MailCade**  
-Email appears instantly in the inbox.
+## Why you'll love it
 
----
+MailCade runs completely local. No cloud services, no external dependencies, no privacy concerns. It's just you and your test emails.
 
-## Who Is This For?
+The app works out of the box - no config files to edit, no services to install. Launch it and you're ready to test.
 
-- **Full-stack developers** testing authentication flows
-- **Backend developers** verifying email notifications
-- **Frontend developers** checking email template rendering
-- **QA engineers** testing email functionality
-- **Anyone** who needs to test emails locally
+It's fast too. Emails appear instantly, and the app uses barely any resources even with thousands of emails.
 
----
+## Perfect for testing
 
-## How It Works
+MailCade shines when you're working on:
 
-MailCade bundles [Mailpit](https://mailpit.axllent.org/), a powerful email testing tool, into a beautiful desktop application with:
+- Registration flows with verification emails
+- Password reset workflows
+- Order confirmations and receipts
+- Email template design
+- Any feature that sends emails
 
-- Automatic server management
-- Cross-platform binary handling
-- Persistent settings
-- Auto-update functionality
-- Native desktop experience
+You can test everything locally without worrying about accidentally emailing real users or setting up complicated test infrastructure.
 
----
+## What it isn't
 
-## What MailCade Is NOT
+MailCade isn't a production email server. Emails never actually leave your machine - they just get caught by MailCade so you can inspect them.
 
-- ❌ **Not a production email server** - For development/testing only
-- ❌ **Not an email client** - Doesn't send or receive real emails
-- ❌ **Not a mail relay** - Emails stay local, never leave your machine
+It also doesn't fetch emails from real mail servers. It only catches emails your local apps try to send.
 
----
+## Under the hood
 
-## Getting Started
+MailCade wraps [Mailpit](https://mailpit.axllent.org/) in a native desktop app. This means you get all of Mailpit's power with a cleaner interface and automatic updates.
 
-Ready to start testing emails?
+## Getting started
 
-→ **[Installation Guide](getting-started/installation.md)** - Install MailCade on your machine
+Head over to the [installation guide](getting-started/installation.md) to download MailCade. Then check out the [quick start](getting-started/quickstart.md) to send your first test email.
 
-→ **[Quick Start](getting-started/quickstart.md)** - Get up and running in 5 minutes
+If you run into issues, the [troubleshooting guide](advanced/troubleshooting.md) has solutions for common problems.
 
-→ **[Table of Contents](toc.md)** - Browse all documentation
+## Questions or issues?
 
----
+Found a bug? Have a feature idea? [Open an issue on GitHub](https://github.com/olakunlevpn/MailCade/issues).
 
-## Support
-
-- **GitHub**: [github.com/olakunlevpn/MailCade](https://github.com/olakunlevpn/MailCade)
-- **Issues**: [Report a bug or request a feature](https://github.com/olakunlevpn/MailCade/issues)
-- **Releases**: [Download latest version](https://github.com/olakunlevpn/MailCade/releases)
-
----
-
-**Ready to test emails like a pro?** Get started with the [installation guide](getting-started/installation.md)!
+Want to see what's new? Check the [releases page](https://github.com/olakunlevpn/MailCade/releases).
