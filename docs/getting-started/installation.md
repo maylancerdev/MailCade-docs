@@ -18,7 +18,21 @@ MailCade works on macOS 11+, Windows 10+, and most modern Linux distros.
 
 Open the `.dmg` file and drag MailCade to your Applications folder. That's it.
 
-If macOS complains about an unidentified developer, go to System Settings → Privacy & Security and click "Open Anyway".
+**If you see a "damaged" error:**
+
+macOS might say "MailCade is damaged and can't be opened." The app isn't damaged - it just isn't code-signed yet.
+
+Fix it by running this command before opening the DMG:
+
+```bash
+xattr -cr ~/Downloads/MailCade-*.dmg
+```
+
+Then open the DMG and install normally.
+
+**Alternative fix:**
+
+If you already installed it, go to System Settings → Privacy & Security, scroll down, and click "Open Anyway" next to the MailCade warning.
 
 ### On Windows
 
